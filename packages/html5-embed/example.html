@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bible Brain Players - example</title>
+<link rel="stylesheet" href="bible-brain-players.css">
+<style>body{font-family:system-ui,sans-serif;margin:0;padding:16px;background:#faf7f8}h1{font-size:1.2rem}</style>
+</head>
+<body>
+<h1>Listen</h1>
+<!-- Audio player: visitors can change country, language and version -->
+<div class="bbp-audio" data-country="IN" data-language="hin" data-bible="HINDOV"></div>
+
+<h1>Read</h1>
+<!-- Reader locked to one version (no selector), with listen-while-you-read -->
+<div class="bbp-reader" data-country="IN" data-bible="HINDOV" data-selector="no"></div>
+
+<h1>Watch</h1>
+<div class="bbp-video" data-country="IN" data-language="hin"></div>
+
+<!-- data-rest points to the proxy that holds your API key -->
+<script src="bible-brain-players.js" data-rest="bbp-proxy.php?ep=" defer></script>
+</body>
+</html>

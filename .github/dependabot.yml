@@ -1,0 +1,17 @@
+version: 2
+updates:
+  # One combined pull request per month for all workflow actions, one for the test tools.
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: monthly
+    groups:
+      workflow-actions:
+        patterns: ["*"]
+  - package-ecosystem: pip
+    directory: "/tests"
+    schedule:
+      interval: monthly
+    groups:
+      test-tools:
+        patterns: ["*"]

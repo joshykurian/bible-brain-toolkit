@@ -1,0 +1,5 @@
+bible_brain.settings:
+  title: 'Bible Brain Players'
+  description: 'API key, default versions and options for the Bible reader, audio and video players.'
+  parent: system.admin_config_media
+  route_name: bible_brain.settings

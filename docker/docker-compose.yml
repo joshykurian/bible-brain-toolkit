@@ -1,0 +1,40 @@
+# Local development only. NOT TESTED by the maintainers, because the build environment has no Docker.
+# Please open an issue if it needs a fix.
+#
+#   export BIBLE_BRAIN_KEY=your-key
+#   docker compose -f docker/docker-compose.yml up
+#
+#   WordPress with the plugin:  http://localhost:8080   (finish the WordPress setup, activate "Bible Brain Players")
+#   HTML5 embed demo:           http://localhost:8081/example.html
+services:
+  db:
+    image: mariadb:11
+    environment:
+      MARIADB_DATABASE: wordpress
+      MARIADB_USER: wordpress
+      MARIADB_PASSWORD: wordpress
+      MARIADB_RANDOM_ROOT_PASSWORD: "1"
+    volumes: [dbdata:/var/lib/mysql]
+
+  wordpress:
+    image: wordpress:php8.3-apache
+    depends_on: [db]
+    ports: ["8080:80"]
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - ../packages/wordpress/bible-brain-players:/var/www/html/wp-content/plugins/bible-brain-players
+
+  html5:
+    image: php:8.3-apache
+    ports: ["8081:80"]
+    environment:
+      BIBLE_BRAIN_KEY: ${BIBLE_BRAIN_KEY:-}
+    volumes:
+      - ../packages/html5-embed:/var/www/html
+
+volumes:
+  dbdata:

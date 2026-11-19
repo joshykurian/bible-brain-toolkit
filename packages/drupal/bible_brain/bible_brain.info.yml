@@ -1,0 +1,6 @@
+name: 'Bible Brain Players'
+type: module
+description: 'Bible Reader, Audio Player and Video Player powered by the Bible Brain API (Faith Comes By Hearing). Visitors choose country, language and version.'
+package: 'Media'
+core_version_requirement: ^10.2 || ^11
+configure: bible_brain.settings

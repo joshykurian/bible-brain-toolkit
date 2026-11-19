@@ -1,0 +1,11 @@
+players:
+  version: 1.1.0
+  css:
+    theme:
+      css/bible-brain-players.css: {}
+  js:
+    js/bible-brain-players.js: { attributes: { defer: true } }
+
+hls:
+  js:
+    'https://cdn.jsdelivr.net/npm/hls.js@1.5.17/dist/hls.min.js': { type: external, minified: true, attributes: { defer: true } }

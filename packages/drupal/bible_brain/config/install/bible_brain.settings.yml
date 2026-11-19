@@ -1,0 +1,26 @@
+api_key: ''
+cache_hours: 12
+accent: '#7E0E2A'
+theme: auto
+allowed_countries: ''
+share: true
+reflect: true
+listen: true
+cdn_hls: true
+reflect_prompts: "What did you hear? Tell it back in your own words.\nWhat does this passage show me about God and about people?\nWhat will I do about it, and who will I share it with?"
+defaults:
+  reader:
+    country: ''
+    language: ''
+    bible: ''
+    fileset: ''
+  audio:
+    country: ''
+    language: ''
+    bible: ''
+    fileset: ''
+  video:
+    country: ''
+    language: ''
+    bible: ''
+    fileset: ''

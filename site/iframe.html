@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bible Brain Player</title>
+<link rel="stylesheet" href="bible-brain-players.css">
+<style>html,body{margin:0;background:transparent}.bbp{margin:0 auto;max-width:none;border-radius:0;border-left:0;border-right:0}</style>
+<script src="assets/demo-api.js"></script>
+</head>
+<body>
+<!--
+  For site builders that block scripts (Wix, Blogger, Squarespace, Google Sites ...):
+  <iframe src="https://YOUR-HOST/iframe.html?type=audio&country=IN&language=hin&bible=HINDOV"
+          width="100%" height="560" style="border:0" loading="lazy" allow="autoplay; fullscreen"></iframe>
+  Query options: type (reader|audio|video), country, language, bible, fileset, book, chapter,
+  selector (yes|no), share, reflect, listen, theme (auto|light|dark), accent (#hex), title, rest (proxy URL).
+-->
+<div id="player"></div>
+<script src="bible-brain-players.js" defer></script>
+<script>
+window.addEventListener('DOMContentLoaded', function () {
+  var p = new URLSearchParams(location.search), el = document.getElementById('player');
+  var type = ['reader', 'audio', 'video'].indexOf(p.get('type')) > -1 ? p.get('type') : 'audio';
+  el.className = 'bbp-' + type;
+  ['country', 'language', 'bible', 'fileset', 'book', 'chapter', 'selector', 'share', 'reflect', 'listen', 'theme', 'accent', 'title'].forEach(function (k) {
+    if (p.get(k)) { el.setAttribute('data-' + k, p.get(k)); }
+  });
+  el.setAttribute('data-rest', p.get('rest') || 'bbp-proxy.php?ep=');
+  window.BBPlayers.mount(el);
+  // Tell the parent page how tall we are (optional)
+  function post() { try { parent.postMessage({ bbpHeight: document.documentElement.scrollHeight }, '*'); } catch (e) {} }
+  if (window.ResizeObserver) { new ResizeObserver(post).observe(document.body); }
+  post();
+});
+</script>
+</body>
+</html>

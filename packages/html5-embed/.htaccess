@@ -1,0 +1,6 @@
+# Keep the private config readable only by PHP, never downloadable as text
+<Files "config.php">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+</Files>

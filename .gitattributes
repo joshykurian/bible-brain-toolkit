@@ -1,0 +1,8 @@
+# Keep line endings stable and never touch binary files
+* text=auto eol=lf
+*.mp3 binary
+*.mp4 binary
+*.webm binary
+*.png binary
+*.zip binary
+*.bat text eol=crlf

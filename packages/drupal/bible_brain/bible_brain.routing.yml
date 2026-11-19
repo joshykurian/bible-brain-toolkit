@@ -1,0 +1,17 @@
+bible_brain.settings:
+  path: '/admin/config/media/bible-brain'
+  defaults:
+    _form: '\Drupal\bible_brain\Form\SettingsForm'
+    _title: 'Bible Brain Players'
+  requirements:
+    _permission: 'administer bible brain'
+
+bible_brain.api:
+  path: '/bible-brain/api/{endpoint}'
+  defaults:
+    _controller: '\Drupal\bible_brain\Controller\ApiController::handle'
+  requirements:
+    _access: 'TRUE'
+    endpoint: '[a-z]+'
+  options:
+    no_cache: TRUE

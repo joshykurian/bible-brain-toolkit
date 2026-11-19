@@ -1,0 +1,4 @@
+administer bible brain:
+  title: 'Administer Bible Brain Players'
+  description: 'Set the Bible Brain API key and default players.'
+  restrict access: true

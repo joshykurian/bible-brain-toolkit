@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bible Brain embed code generator</title>
+<link rel="stylesheet" href="bible-brain-players.css">
+<style>
+:root {
+	--mist: #F2F5F4; --paper: #FFFFFF; --ink: #1B2B2A; --muted: #4B5E5B; --teal: #0E5A52; --maroon: #7E0E2A;
+	--line: #C9D6D2; --tint: #E1EBE8;
+	--serif: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, "Noto Serif", serif;
+	--sans: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Helvetica Neue", Arial, sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--mist); color: var(--ink); font: 1rem/1.6 var(--sans); }
+a { color: var(--teal); text-underline-offset: .18em; }
+a:hover { color: var(--maroon); }
+:focus-visible { outline: 3px solid var(--maroon); outline-offset: 3px; border-radius: 3px; }
+.wrap { width: min(1120px, 100% - 2rem); margin-inline: auto; }
+.skip { position: absolute; left: -999px; top: 0; background: var(--paper); padding: .5rem 1rem; z-index: 9; }
+.skip:focus { left: 1rem; top: 1rem; }
+
+
+header.top { padding: 1rem 0; border-bottom: 1px solid var(--line); }
+header.top .wrap { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .5rem 2rem; }
+.brand { font: 700 1.05rem var(--serif); color: var(--ink); text-decoration: none; }
+nav a { display: inline-block; white-space: nowrap; margin: 0 0 0 1.25rem; color: var(--ink); text-decoration: none; font-size: .95rem; }
+@media (max-width: 600px) { nav a { margin: 0 1rem 0 0; } }
+nav a:hover { text-decoration: underline; }
+main.wrap { padding: 2.5rem 0 3rem; }
+h1 { font: 700 clamp(1.8rem, 4vw, 2.6rem)/1.15 var(--serif); margin: 0 0 .5rem; }
+h2 { font: 700 1.2rem/1.25 var(--serif); margin: 1.75rem 0 .6rem; }
+p.lead { color: var(--muted); margin: 0 0 1.5rem; max-width: 40rem; font-size: 1.05rem; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: .8rem; }
+label { display: block; font-size: .88rem; color: var(--muted); }
+select, input[type=text], textarea { width: 100%; min-height: 44px; padding: .55rem .7rem; font: 1rem var(--sans); color: var(--ink); background: var(--paper); border: 1px solid #8CA09C; border-radius: 8px; }
+input[type=color] { width: 100%; height: 44px; border: 1px solid #8CA09C; border-radius: 8px; background: var(--paper); padding: 3px; }
+.check { display: flex; align-items: center; gap: .5rem; color: var(--ink); font-size: .95rem; min-height: 44px; }
+.check input { width: 20px; height: 20px; accent-color: var(--teal); }
+button { min-height: 44px; padding: .6rem 1.1rem; font: 600 .95rem var(--sans); border-radius: 8px; border: 1px solid var(--teal); cursor: pointer; background: var(--teal); color: #fff; }
+button.quiet { background: transparent; color: var(--teal); }
+.row { display: flex; gap: .6rem; align-items: flex-end; flex-wrap: wrap; }
+.row > label { flex: 1 1 320px; }
+#conn { font-size: .92rem; color: var(--muted); }
+#conn.bad { color: #A4262C; } #conn.ok { color: var(--teal); }
+.cols { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.5rem 3rem; }
+@media (min-width: 900px) { .cols { grid-template-columns: minmax(0, 420px) minmax(0, 1fr); align-items: start; } }
+.out { margin-bottom: 1rem; }
+.out header { display: flex; justify-content: space-between; align-items: center; margin-bottom: .3rem; font-weight: 600; font-size: .95rem; }
+textarea { font: .82rem/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; min-height: 96px; resize: vertical; background: var(--ink); color: #E8F1EF; border-color: var(--ink); }
+.note { font-size: .88rem; color: var(--muted); }
+#preview .bbp { margin-top: 0; font-family: var(--serif); --bbp-accent: var(--maroon); }
+footer { border-top: 1px solid var(--line); padding: 2.5rem 0 3rem; background: var(--tint); }
+footer .cols { display: grid; gap: 1.5rem 3rem; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 800px) { footer .cols { grid-template-columns: minmax(0, 5fr) minmax(0, 4fr); } }
+footer h2 { font-size: 1.15rem; margin-top: 0; }
+footer ul { margin: 0; padding: 0; list-style: none; columns: 2; column-gap: 2rem; }
+footer li { margin: .2rem 0; break-inside: avoid; }
+footer p { margin: 0 0 .6rem; font-size: .92rem; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .words button { transition: none; } }
+</style>
+</head>
+<body>
+<a class="skip" href="#gen">Skip to the generator</a>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="https://www.shalomdesigns2dio.com/bible-brain-toolkit/">Bible Brain Toolkit</a>
+    <nav aria-label="Main"><!--site-nav--></nav>
+  </div>
+</header>
+
+<main class="wrap" id="gen">
+  <h1>Embed code generator</h1>
+  <p class="lead">Choose a country, language and version, then copy the code for your website: plain HTML, WordPress, Joomla, Drupal, or an iframe for site builders.</p>
+
+  <div class="row">
+    <label>Proxy address (where your Bible Brain key is kept)
+      <input type="text" id="proxy" value="bbp-proxy.php?ep=" spellcheck="false"></label>
+    <button id="connect" type="button">Connect</button>
+    <span id="conn" role="status" aria-live="polite"></span>
+  </div>
+
+  <div class="cols">
+    <div>
+      <h2>1. What to show</h2>
+      <div class="grid">
+        <label>Player
+          <select id="type"><option value="audio">Audio player</option><option value="reader">Bible reader</option><option value="video">Video player</option></select></label>
+        <label>Country<select id="country"></select></label>
+        <label>Language<select id="language"></select></label>
+        <label>Version<select id="version"></select></label>
+        <label>Edition<select id="edition"></select></label>
+      </div>
+      <h2>2. Options</h2>
+      <div class="grid">
+        <label class="check"><input type="checkbox" id="selector" checked> Visitors can change the version</label>
+        <label class="check"><input type="checkbox" id="share" checked> Share buttons</label>
+        <label class="check"><input type="checkbox" id="reflect" checked> Reflection prompts</label>
+        <label class="check" id="listenWrap"><input type="checkbox" id="listen" checked> Listen while reading</label>
+        <label>Theme<select id="theme"><option value="auto">Follow device</option><option value="light">Light</option><option value="dark">Dark</option></select></label>
+        <label>Accent color<input type="color" id="accent" value="#7e0e2a"></label>
+      </div>
+      <label style="margin-top:12px">Title above the player (optional)<input type="text" id="title" placeholder="Listen to the Gospel of John"></label>
+      <h2>Preview</h2>
+      <div id="preview"></div>
+    </div>
+
+    <div>
+      <h2>3. Copy your code</h2>
+      <div class="out"><header><span>HTML5 (any website)</span><button class="quiet" data-copy="o-html" type="button">Copy</button></header><textarea id="o-html" readonly rows="7"></textarea></div>
+      <div class="out"><header><span>iframe (Wix, Blogger, Squarespace, Google Sites)</span><button class="quiet" data-copy="o-iframe" type="button">Copy</button></header><textarea id="o-iframe" readonly rows="4"></textarea></div>
+      <div class="out"><header><span>WordPress shortcode</span><button class="quiet" data-copy="o-wp" type="button">Copy</button></header><textarea id="o-wp" readonly rows="2"></textarea></div>
+      <div class="out"><header><span>Joomla tag</span><button class="quiet" data-copy="o-joomla" type="button">Copy</button></header><textarea id="o-joomla" readonly rows="2"></textarea></div>
+      <div class="out"><header><span>Drupal block settings</span><button class="quiet" data-copy="o-drupal" type="button">Copy</button></header><textarea id="o-drupal" readonly rows="5"></textarea></div>
+      <p class="note">Check the licence and copyright of each Bible version before you publish it. Audio and video are streamed from Bible Brain.</p>
+    </div>
+  </div>
+
+</main>
+
+<footer id="about">
+  <div class="wrap cols">
+    <div>
+      <h2>About</h2>
+      <p>A free toolkit developed by <a href="https://www.shalomdesigns2dio.com/" target="_blank" rel="noopener">Shalom Design S2dio (SDS)</a>, with the help of AI tools. It is an unofficial community project and is not published or supported by Faith Comes By Hearing.</p>
+      <p>Scripture content is provided by <a href="https://www.faithcomesbyhearing.com/audio-bible-resources/bible-brain" target="_blank" rel="noopener">Bible Brain</a>, a project of <a href="https://www.faithcomesbyhearing.com/" target="_blank" rel="noopener">Faith Comes By Hearing</a>. Please follow the license and copyright terms of every Bible version you publish.</p>
+    </div>
+    <div>
+      <h2>Bible Brain links</h2>
+      <ul>
+        <li><a href="https://www.faithcomesbyhearing.com/audio-bible-resources/bible-brain" target="_blank" rel="noopener noreferrer">Bible Brain</a></li>
+        <li><a href="https://www.faithcomesbyhearing.com/bible-brain/developer-documentation" target="_blank" rel="noopener noreferrer">Developer documentation</a></li>
+        <li><a href="https://www.faithcomesbyhearing.com/bible-brain/api-reference" target="_blank" rel="noopener noreferrer">API reference</a></li>
+        <li><a href="https://4.dbt.io/api_key/request" target="_blank" rel="noopener noreferrer">Request a free API key</a></li>
+        <li><a href="https://www.faithcomesbyhearing.com/bible-brain-available-content" target="_blank" rel="noopener noreferrer">Available content</a></li>
+        <li><a href="https://www.faithcomesbyhearing.com/bible-brain/license" target="_blank" rel="noopener noreferrer">License</a></li>
+        <li><a href="https://www.faithcomesbyhearing.com/bible-brain/terms-conditions" target="_blank" rel="noopener noreferrer">Terms and conditions</a></li>
+        <li><a href="https://www.faithcomesbyhearing.com/copyright-policy" target="_blank" rel="noopener noreferrer">Copyright policy</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+<script src="bible-brain-players.js" defer></script>
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+  var params = new URLSearchParams(location.search);
+  $('proxy').value = params.get('proxy') || $('proxy').value;
+  var catalog = [];
+  var memo = {};
+
+  function base() { return $('proxy').value.trim(); }
+  function api(path, q) {
+    var qs = Object.keys(q || {}).filter(function (k) { return q[k]; }).map(function (k) { return encodeURIComponent(k) + '=' + encodeURIComponent(q[k]); }).join('&');
+    var b = base();
+    var url = b + path + (qs ? (b.indexOf('?') > -1 ? '&' : '?') + qs : '');
+    return fetch(url, { headers: { Accept: 'application/json' } }).then(function (r) {
+      return r.json().catch(function () { return {}; }).then(function (j) {
+        if (!r.ok) { throw new Error(j.message || 'Request failed'); }
+        return j;
+      });
+    });
+  }
+  function status(msg, cls) { var c = $('conn'); c.textContent = msg; c.className = cls || ''; }
+  function fill(sel, items, val) {
+    sel.innerHTML = '';
+    items.forEach(function (it) { var o = document.createElement('option'); o.value = it.v; o.textContent = it.l; sel.appendChild(o); });
+    if (val && items.some(function (i) { return i.v === val; })) { sel.value = val; }
+  }
+  function media() { return $('type').value === 'reader' ? 'text' : $('type').value; }
+
+  function connect() {
+    status('Connecting...');
+    memo = {};
+    api('countries').then(function (r) {
+      fill($('country'), (r.countries || []).map(function (c) { return { v: c.code, l: c.name }; }), params.get('country') || 'IN');
+      status((r.countries || []).length + ' countries loaded.', 'ok');
+      return loadCountry();
+    }).catch(function (e) { status(e.message, 'bad'); });
+  }
+  function loadCountry() {
+    var key = $('country').value + '|' + media();
+    status('Loading versions...');
+    var p = memo[key] || (memo[key] = api('catalog', { country: $('country').value, media: media() }));
+    return p.then(function (r) {
+      catalog = r.languages || [];
+      fill($('language'), catalog.map(function (l) { return { v: l.id, l: l.name }; }), params.get('language'));
+      status(catalog.length ? '' : 'No versions found for this country and player.', catalog.length ? 'ok' : 'bad');
+      loadLanguage();
+    }).catch(function (e) { delete memo[key]; status(e.message, 'bad'); });
+  }
+  function cur(list, id, field) { return list.filter(function (x) { return x[field] === id; })[0]; }
+  function loadLanguage() {
+    var L = cur(catalog, $('language').value, 'id');
+    fill($('version'), L ? L.versions.map(function (v) { return { v: v.abbr, l: v.name }; }) : [], params.get('bible'));
+    loadVersion();
+  }
+  function loadVersion() {
+    var L = cur(catalog, $('language').value, 'id');
+    var V = L ? cur(L.versions, $('version').value, 'abbr') : null;
+    fill($('edition'), V ? V.filesets.map(function (f) { return { v: f.id, l: f.label }; }) : [], params.get('fileset'));
+    render();
+  }
+
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;'); }
+  function abs(rel) { return new URL(rel, location.href).href; }
+
+  function settings() {
+    var type = $('type').value;
+    var s = { type: type, country: $('country').value, language: $('language').value, bible: $('version').value, fileset: $('edition').value };
+    s.selector = $('selector').checked; s.share = $('share').checked; s.reflect = $('reflect').checked;
+    s.listen = type === 'reader' ? $('listen').checked : true;
+    s.theme = $('theme').value; s.accent = $('accent').value; s.title = $('title').value.trim();
+    return s;
+  }
+
+  function render() {
+    var s = settings();
+    $('listenWrap').style.display = s.type === 'reader' ? '' : 'none';
+    if (!s.bible) { return; }
+    var pairs = [['country', s.country], ['language', s.language], ['bible', s.bible]];
+    if ($('edition').options.length > 1) { pairs.push(['fileset', s.fileset]); }
+    var extras = [];
+    if (!s.selector) { extras.push(['selector', 'no']); }
+    if (!s.share) { extras.push(['share', 'no']); }
+    if (!s.reflect) { extras.push(['reflect', 'no']); }
+    if (s.type === 'reader' && !s.listen) { extras.push(['listen', 'no']); }
+    if (s.theme !== 'auto') { extras.push(['theme', s.theme]); }
+    if (s.accent.toLowerCase() !== '#7e0e2a') { extras.push(['accent', s.accent]); }
+    if (s.title) { extras.push(['title', s.title]); }
+    var all = pairs.concat(extras);
+
+    var proxyAbs = abs(base());
+    var attrs = all.map(function (p) { return 'data-' + p[0] + '="' + esc(p[1]) + '"'; }).join(' ');
+    $('o-html').value = '<link rel="stylesheet" href="' + abs('bible-brain-players.css') + '">\n' +
+      '<div class="bbp-' + s.type + '" data-rest="' + esc(proxyAbs) + '" ' + attrs + '></div>\n' +
+      '<script src="' + abs('bible-brain-players.js') + '" defer><\/script>';
+
+    var q = ['type=' + s.type].concat(all.map(function (p) { return p[0] + '=' + encodeURIComponent(p[1]); })).concat(['rest=' + encodeURIComponent(proxyAbs)]).join('&');
+    $('o-iframe').value = '<iframe src="' + abs('iframe.html') + '?' + q + '" width="100%" height="' + (s.type === 'video' ? 720 : 600) + '" style="border:0" loading="lazy" allow="autoplay; fullscreen"></iframe>';
+
+    var kv = all.map(function (p) { return p[0] + '="' + p[1].replace(/"/g, '') + '"'; }).join(' ');
+    $('o-wp').value = '[bb_' + s.type + ' ' + kv + ']';
+    $('o-joomla').value = '{bbp ' + s.type + ' ' + kv + '}';
+    $('o-drupal').value = 'Add the "Bible Brain player" block, then set:\nPlayer: ' + ({ audio: 'Audio player', reader: 'Bible reader', video: 'Video player' })[s.type] +
+      '\nCountry: ' + s.country + '\nLanguage: ' + s.language + '\nBible (version): ' + s.bible + '\nEdition (fileset): ' + s.fileset +
+      '\nVisitors can change the version: ' + (s.selector ? 'yes' : 'no');
+
+    // live preview
+    var box = $('preview'); box.innerHTML = '';
+    try { ['text', 'audio', 'video'].forEach(function (m) { localStorage.removeItem('bbp_sel_' + m); }); } catch (e) { /* ignore */ }
+    var d = document.createElement('div');
+    d.className = 'bbp-' + s.type;
+    d.setAttribute('data-rest', base());
+    pairs.concat(extras).forEach(function (p) { d.setAttribute('data-' + p[0], p[1]); });
+    box.appendChild(d);
+    if (window.BBPlayers) { window.BBPlayers.mount(d); }
+  }
+
+  var t;
+  function later() { clearTimeout(t); t = setTimeout(render, 250); }
+  $('connect').addEventListener('click', connect);
+  $('type').addEventListener('change', function () { params = new URLSearchParams(); loadCountry(); });
+  $('country').addEventListener('change', function () { params = new URLSearchParams(); loadCountry(); });
+  $('language').addEventListener('change', function () { params = new URLSearchParams(); loadLanguage(); });
+  $('version').addEventListener('change', function () { params = new URLSearchParams(); loadVersion(); });
+  $('edition').addEventListener('change', render);
+  ['selector', 'share', 'reflect', 'listen', 'theme', 'accent'].forEach(function (id) { $(id).addEventListener('change', render); });
+  $('title').addEventListener('input', later);
+  Array.prototype.forEach.call(document.querySelectorAll('[data-copy]'), function (b) {
+    b.addEventListener('click', function () {
+      var ta = $(b.getAttribute('data-copy'));
+      ta.select();
+      var ok = function () { var o = b.textContent; b.textContent = 'Copied'; setTimeout(function () { b.textContent = o; }, 1500); };
+      if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(ta.value).then(ok); } else { document.execCommand('copy'); ok(); }
+    });
+  });
+  window.addEventListener('DOMContentLoaded', connect);
+})();
+</script>
+</body>
+</html>

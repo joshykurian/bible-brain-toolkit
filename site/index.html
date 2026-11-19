@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bible Brain Toolkit - try the players</title>
+<meta name="description" content="Free audio, video and text players for Bible Brain, for WordPress, Drupal, Joomla and any website. Try them here with sample data.">
+<link rel="canonical" href="https://www.shalomdesigns2dio.com/bible-brain-toolkit/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.shalomdesigns2dio.com/bible-brain-toolkit/">
+<meta property="og:title" content="Bible Brain Toolkit - try the players">
+<meta property="og:description" content="Audio-first Scripture players for any website. Try them in your browser.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230E5A52'/%3E%3Cpath d='M12 9l12 7-12 7z' fill='%23F2F5F4'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/bible-brain-players.css">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a class="skip" href="#try">Skip to the players</a>
+
+<header class="top">
+	<div class="wrap">
+		<a class="brand" href="./">Bible Brain Toolkit</a>
+		<nav aria-label="Main">
+			<a href="#try">Read and watch</a>
+			<a href="#install">Add to your site</a>
+			<a href="#own">Use your content</a>
+			<a href="generator.html">Code generator</a>
+			<a href="#about">About</a>
+			<a href="https://github.com/shalomdesigns2dio/bible-brain-toolkit">GitHub</a>
+		</nav>
+	</div>
+</header>
+
+<main id="top">
+	<div class="hero">
+		<div class="wrap">
+			<div>
+				<ul class="words" id="words" aria-label="Choose the player language"></ul>
+				<p class="lead">Free audio, video and text players for <a href="https://www.faithcomesbyhearing.com/audio-bible-resources/bible-brain">Bible Brain</a>. Add them to WordPress, Drupal, Joomla or any web page.</p>
+				<p class="hint">Pick a word. The player changes its language. Urdu reads right to left.</p>
+			</div>
+			<div class="stage">
+				<div id="hero-player"></div>
+				<p class="sample-note">Sample data: public-domain King James text read by a computer voice, and generated test video. It is not Bible Brain content or a Bible Brain recording.</p>
+			</div>
+		</div>
+	</div>
+
+	<section id="try" aria-labelledby="try-h">
+		<div class="wrap">
+			<h2 id="try-h">Read along, then watch</h2>
+			<p class="sub">The reader plays the same chapter and highlights each verse as it is spoken. The video player lists clips and plays the next one for you.</p>
+			<div class="pair">
+				<div><h3>Reader with listen-while-you-read</h3><div id="reader-player"></div></div>
+				<div><h3>Video player</h3><div id="video-player"></div></div>
+			</div>
+		</div>
+	</section>
+
+	<section id="install" aria-labelledby="install-h">
+		<div class="wrap">
+			<h2 id="install-h">Add it to your site</h2>
+			<p class="sub">You need a free <a href="https://4.dbt.io/api_key/request">Bible Brain API key</a>. It stays on your server, visitors never see it.</p>
+			<div class="tabs" role="tablist" aria-label="Platform" id="tabs"></div>
+			<div id="panels"></div>
+		</div>
+	</section>
+
+	<section id="own" aria-labelledby="own-h">
+		<div class="wrap">
+			<h2 id="own-h">See your own content</h2>
+			<p class="own-help">Already running the plugin or the HTML5 proxy? Paste its address and these players will show real Bible Brain content from your server. Your key is never entered here.</p>
+			<form class="own" id="own-form">
+				<label class="skip" for="own-url">Proxy address</label>
+				<input id="own-url" type="url" inputmode="url" placeholder="https://yoursite.org/bible/bbp-proxy.php?ep=" autocomplete="off" spellcheck="false">
+				<button class="btn" type="submit">Use my proxy</button>
+				<button class="btn quiet" type="button" id="own-reset">Back to sample data</button>
+			</form>
+			<p class="own-status" id="own-status" role="status"></p>
+			<p class="own-help">The address must use https, and your proxy must allow this website (<code>allowed_origins</code>). Examples: <code>https://yoursite.org/wp-json/bbp/v1/</code>, <code>https://yoursite.org/bible-brain/api/</code>, <code>https://yoursite.org/index.php?bbapi=</code>.</p>
+		</div>
+	</section>
+</main>
+
+<footer id="about">
+	<div class="wrap cols">
+		<div>
+			<h2>About</h2>
+			<p>The Bible Brain Toolkit is a free, open-source set of tools for putting Bible Brain audio, video and text on websites: a WordPress plugin, a Drupal module, a Joomla plugin, an HTML5 embed with a small proxy, and a desktop downloader.</p>
+			<p>Developed by <a href="https://www.shalomdesigns2dio.com/" target="_blank" rel="noopener">Shalom Design S2dio (SDS)</a>, with the help of AI tools. This is an unofficial community project and is not published or supported by Faith Comes By Hearing. This is an AI-assisted ("vibe coded") project: the developer set the goals and checked the results, and Claude (Anthropic), used through Claude Code, wrote most of the code. Please test it on a staging site before you rely on it.</p>
+			<p>Scripture content is provided by <a href="https://www.faithcomesbyhearing.com/audio-bible-resources/bible-brain" target="_blank" rel="noopener">Bible Brain</a>, a project of <a href="https://www.faithcomesbyhearing.com/" target="_blank" rel="noopener">Faith Comes By Hearing</a>. Please follow the license and copyright terms of every Bible version you publish.</p>
+			<p>Questions about your key or content licenses: <a href="mailto:support@digitalbibleplatform.com">support@digitalbibleplatform.com</a></p>
+			<p><a href="https://github.com/shalomdesigns2dio/bible-brain-toolkit">Source code</a> | <a href="https://github.com/shalomdesigns2dio/bible-brain-toolkit/releases">Download</a> | <a href="https://github.com/shalomdesigns2dio/bible-brain-toolkit/issues">Report a problem</a> | <a href="generator.html">Code generator</a></p>
+		</div>
+		<div>
+			<h2>Bible Brain links</h2>
+			<ul>
+				<li><a href="https://www.faithcomesbyhearing.com/audio-bible-resources/bible-brain">Bible Brain</a></li>
+				<li><a href="https://www.faithcomesbyhearing.com/bible-brain/developer-documentation">Developer documentation</a></li>
+				<li><a href="https://www.faithcomesbyhearing.com/bible-brain/api-reference">API reference</a></li>
+				<li><a href="https://4.dbt.io/api_key/request">Request a free API key</a></li>
+				<li><a href="https://www.faithcomesbyhearing.com/bible-brain-available-content">Available content</a></li>
+				<li><a href="https://www.faithcomesbyhearing.com/bible-brain/license">License</a></li>
+				<li><a href="https://www.faithcomesbyhearing.com/bible-brain/terms-conditions">Terms and conditions</a></li>
+				<li><a href="https://www.faithcomesbyhearing.com/copyright-policy">Copyright policy</a></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+
+<noscript><p class="wrap">The players need JavaScript. The install instructions are in the project README.</p></noscript>
+
+<script src="assets/demo-api.js"></script>
+<script src="assets/bible-brain-players.js" defer></script>
+<script src="assets/site.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+:root {
+	--mist: #F2F5F4; --paper: #FFFFFF; --ink: #1B2B2A; --muted: #4B5E5B; --teal: #0E5A52; --maroon: #7E0E2A;
+	--line: #C9D6D2; --tint: #E1EBE8;
+	--serif: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, "Noto Serif", serif;
+	--sans: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Helvetica Neue", Arial, sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--mist); color: var(--ink); font: 1rem/1.6 var(--sans); }
+a { color: var(--teal); text-underline-offset: .18em; }
+a:hover { color: var(--maroon); }
+:focus-visible { outline: 3px solid var(--maroon); outline-offset: 3px; border-radius: 3px; }
+.wrap { width: min(1120px, 100% - 2rem); margin-inline: auto; }
+.skip { position: absolute; left: -999px; top: 0; background: var(--paper); padding: .5rem 1rem; z-index: 9; }
+.skip:focus { left: 1rem; top: 1rem; }
+
+header.top { padding: 1rem 0; border-bottom: 1px solid var(--line); }
+header.top .wrap { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .5rem 2rem; }
+.brand { font: 700 1.05rem var(--serif); color: var(--ink); text-decoration: none; }
+nav a { display: inline-block; white-space: nowrap; margin: 0 0 0 1.25rem; color: var(--ink); text-decoration: none; font-size: .95rem; }
+@media (max-width: 600px) { nav a { margin: 0 1rem 0 0; } }
+nav a:hover { text-decoration: underline; }
+
+/* hero: the word "Listen" in the languages of the region, each one switches the live player */
+.hero { padding: 2.5rem 0 3rem; }
+.hero .wrap { display: grid; gap: 2rem 3.5rem; grid-template-columns: minmax(0, 1fr); align-items: start; }
+@media (min-width: 900px) { .hero .wrap { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); } }
+.words { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: .1rem 1.2rem; }
+@media (min-width: 900px) { .words { display: block; } }
+.words button { appearance: none; background: none; border: 0; padding: .02em 0 .04em; margin: 0; cursor: pointer; text-align: start;
+	font: 400 clamp(1.9rem, 4.2vw, 3.7rem)/1.12 var(--serif); color: #5E736F; border-bottom: 3px solid transparent; transition: color .2s, border-color .2s; }
+.words button:hover { color: var(--ink); }
+.words button[aria-pressed="true"] { color: var(--ink); border-bottom-color: var(--maroon); }
+.words li { display: block; }
+.lead { max-width: 34rem; margin: 1.6rem 0 0; font-size: 1.12rem; }
+.hint { max-width: 34rem; margin: .6rem 0 0; color: var(--muted); font-size: .9rem; }
+.stage { min-width: 0; }
+.sample-note { margin: .6rem .2rem 0; font-size: .85rem; color: var(--muted); }
+
+#reader-player .bbp-text { max-height: 24rem; overflow: auto; }
+/* players inherit this page's type so the Scripture text reads in a serif */
+.bbp { font-family: var(--serif); --bbp-accent: var(--maroon); }
+
+section { padding: 3rem 0; border-top: 1px solid var(--line); }
+h2 { font: 700 clamp(1.5rem, 3vw, 2rem)/1.2 var(--serif); margin: 0 0 .5rem; }
+.sub { max-width: 40rem; margin: 0 0 1.75rem; color: var(--muted); }
+.pair { display: grid; gap: 2rem; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 960px) { .pair { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.pair h3 { font: 700 1.1rem var(--serif); margin: 0 0 .6rem; }
+
+/* install */
+.tabs { display: flex; flex-wrap: wrap; gap: .25rem; border-bottom: 2px solid var(--line); }
+.tabs button { appearance: none; background: none; border: 0; padding: .6rem 1rem; font: 600 .95rem var(--sans); color: var(--muted); cursor: pointer; margin-bottom: -2px; border-bottom: 2px solid transparent; }
+.tabs button[aria-selected="true"] { color: var(--teal); border-bottom-color: var(--teal); }
+.panel { padding: 1.25rem 0 0; display: grid; gap: 1.25rem 2.5rem; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 900px) { .panel { grid-template-columns: minmax(0, 4fr) minmax(0, 5fr); } }
+.panel[hidden] { display: none; }
+.panel ol { margin: 0; padding-left: 1.2rem; }
+.panel li { margin: .35rem 0; }
+.code { position: relative; background: var(--ink); color: #E8F1EF; border-radius: 10px; padding: 1rem 1rem 1rem 1.1rem; overflow: auto; font: .85rem/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+.code pre { margin: 0; white-space: pre; }
+.copy { position: sticky; float: right; top: 0; margin: -.3rem -.3rem 0 .75rem; font: 600 .8rem var(--sans); background: var(--tint); color: var(--ink); border: 0; border-radius: 6px; padding: .35rem .7rem; cursor: pointer; }
+
+/* own proxy */
+form.own { display: flex; flex-wrap: wrap; gap: .6rem; max-width: 46rem; }
+form.own input { flex: 1 1 18rem; min-width: 0; padding: .7rem .8rem; font: 1rem var(--sans); border: 1px solid #8CA09C; border-radius: 8px; background: var(--paper); color: var(--ink); }
+.btn { font: 600 .95rem var(--sans); padding: .7rem 1.1rem; border-radius: 8px; border: 1px solid var(--teal); background: var(--teal); color: #fff; cursor: pointer; }
+.btn.quiet { background: transparent; color: var(--teal); }
+.own-status { margin: .6rem 0 0; min-height: 1.5em; color: var(--muted); font-size: .92rem; }
+.own-help { max-width: 46rem; color: var(--muted); font-size: .92rem; }
+
+footer { border-top: 1px solid var(--line); padding: 2.5rem 0 3rem; background: var(--tint); }
+footer .cols { display: grid; gap: 1.5rem 3rem; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 800px) { footer .cols { grid-template-columns: minmax(0, 5fr) minmax(0, 4fr); } }
+footer h2 { font-size: 1.15rem; }
+footer ul { margin: 0; padding: 0; list-style: none; columns: 2; column-gap: 2rem; }
+footer li { margin: .2rem 0; break-inside: avoid; }
+footer p { margin: 0 0 .6rem; font-size: .92rem; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .words button { transition: none; } }

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="plugin" group="system" method="upgrade">
+	<name>PLG_SYSTEM_BIBLEBRAIN</name>
+	<author>Shalom Design S2dio (SDS)</author>
+	<authorUrl>https://www.shalomdesigns2dio.com/bible-brain-toolkit/</authorUrl>
+	<creationDate>2026-11</creationDate>
+	<copyright>(C) 2026</copyright>
+	<license>GNU General Public License version 2 or later</license>
+	<version>1.1.0</version>
+	<description>PLG_SYSTEM_BIBLEBRAIN_XML_DESCRIPTION</description>
+	<namespace path="src">Biblebrain\Plugin\System\Biblebrain</namespace>
+	<files>
+		<folder plugin="biblebrain">services</folder>
+		<folder>src</folder>
+		<folder>lib</folder>
+	</files>
+	<languages folder="language">
+		<language tag="en-GB">en-GB/plg_system_biblebrain.ini</language>
+		<language tag="en-GB">en-GB/plg_system_biblebrain.sys.ini</language>
+	</languages>
+	<media destination="plg_system_biblebrain" folder="media">
+		<folder>js</folder>
+		<folder>css</folder>
+		<folder>generator</folder>
+	</media>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="api_key" type="text" label="PLG_SYSTEM_BIBLEBRAIN_API_KEY" description="PLG_SYSTEM_BIBLEBRAIN_API_KEY_DESC" size="50" autocomplete="off" />
+				<field name="cache_hours" type="number" label="PLG_SYSTEM_BIBLEBRAIN_CACHE_HOURS" default="12" min="1" max="168" step="1" />
+				<field name="allowed_countries" type="text" label="PLG_SYSTEM_BIBLEBRAIN_ALLOWED_COUNTRIES" description="PLG_SYSTEM_BIBLEBRAIN_ALLOWED_COUNTRIES_DESC" default="" />
+			</fieldset>
+			<fieldset name="defaults" label="PLG_SYSTEM_BIBLEBRAIN_DEFAULTS" description="PLG_SYSTEM_BIBLEBRAIN_DEFAULTS_DESC">
+				<field name="reader_country" type="text" label="PLG_SYSTEM_BIBLEBRAIN_READER_COUNTRY" size="4" maxlength="2" />
+				<field name="reader_language" type="text" label="PLG_SYSTEM_BIBLEBRAIN_READER_LANGUAGE" size="8" />
+				<field name="reader_bible" type="text" label="PLG_SYSTEM_BIBLEBRAIN_READER_BIBLE" size="16" />
+				<field name="reader_fileset" type="text" label="PLG_SYSTEM_BIBLEBRAIN_READER_FILESET" size="24" />
+				<field name="audio_country" type="text" label="PLG_SYSTEM_BIBLEBRAIN_AUDIO_COUNTRY" size="4" maxlength="2" />
+				<field name="audio_language" type="text" label="PLG_SYSTEM_BIBLEBRAIN_AUDIO_LANGUAGE" size="8" />
+				<field name="audio_bible" type="text" label="PLG_SYSTEM_BIBLEBRAIN_AUDIO_BIBLE" size="16" />
+				<field name="audio_fileset" type="text" label="PLG_SYSTEM_BIBLEBRAIN_AUDIO_FILESET" size="24" />
+				<field name="video_country" type="text" label="PLG_SYSTEM_BIBLEBRAIN_VIDEO_COUNTRY" size="4" maxlength="2" />
+				<field name="video_language" type="text" label="PLG_SYSTEM_BIBLEBRAIN_VIDEO_LANGUAGE" size="8" />
+				<field name="video_bible" type="text" label="PLG_SYSTEM_BIBLEBRAIN_VIDEO_BIBLE" size="16" />
+				<field name="video_fileset" type="text" label="PLG_SYSTEM_BIBLEBRAIN_VIDEO_FILESET" size="24" />
+			</fieldset>
+			<fieldset name="look" label="PLG_SYSTEM_BIBLEBRAIN_LOOK">
+				<field name="accent" type="color" label="PLG_SYSTEM_BIBLEBRAIN_ACCENT" default="#7E0E2A" />
+				<field name="theme" type="list" label="PLG_SYSTEM_BIBLEBRAIN_THEME" default="auto">
+					<option value="auto">PLG_SYSTEM_BIBLEBRAIN_THEME_AUTO</option>
+					<option value="light">PLG_SYSTEM_BIBLEBRAIN_THEME_LIGHT</option>
+					<option value="dark">PLG_SYSTEM_BIBLEBRAIN_THEME_DARK</option>
+				</field>
+				<field name="share" type="radio" label="PLG_SYSTEM_BIBLEBRAIN_SHARE" layout="joomla.form.field.radio.switcher" default="1">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field name="listen" type="radio" label="PLG_SYSTEM_BIBLEBRAIN_LISTEN" layout="joomla.form.field.radio.switcher" default="1">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field name="reflect" type="radio" label="PLG_SYSTEM_BIBLEBRAIN_REFLECT" layout="joomla.form.field.radio.switcher" default="1">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field name="reflect_prompts" type="textarea" label="PLG_SYSTEM_BIBLEBRAIN_REFLECT_PROMPTS" description="PLG_SYSTEM_BIBLEBRAIN_REFLECT_PROMPTS_DESC" rows="4" cols="60" filter="raw" />
+				<field name="cdn_hls" type="radio" label="PLG_SYSTEM_BIBLEBRAIN_CDN_HLS" description="PLG_SYSTEM_BIBLEBRAIN_CDN_HLS_DESC" layout="joomla.form.field.radio.switcher" default="1">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field name="labels" type="textarea" label="PLG_SYSTEM_BIBLEBRAIN_LABELS" description="PLG_SYSTEM_BIBLEBRAIN_LABELS_DESC" rows="3" cols="60" filter="raw" />
+			</fieldset>
+		</fields>
+	</config>
+</extension>

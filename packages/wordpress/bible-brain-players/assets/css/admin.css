@@ -1,0 +1,17 @@
+.bbp-admin .bbp-lead { font-size: 14px; max-width: 70ch; }
+.bbp-admin h2 { margin-top: 2em; }
+.bbp-admin .bbp-card { background: #fff; border: 1px solid #dcdcde; border-radius: 6px; padding: 16px 20px; max-width: 980px; }
+.bbp-admin .bbp-card label { display: block; margin: 0 0 12px; }
+.bbp-admin .bbp-card label > span { display: block; font-weight: 600; margin-bottom: 4px; }
+.bbp-admin .bbp-card select, .bbp-admin .bbp-card input[type="text"], .bbp-admin .bbp-card input[type="password"] { width: 100%; max-width: 420px; }
+.bbp-admin .bbp-check { display: block; }
+.bbp-admin .bbp-check > span { display: inline; font-weight: 400; }
+.bbp-admin .bbp-steps { margin: 0 0 14px 18px; }
+.bbp-admin .bbp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; max-width: 980px; }
+.bbp-admin .bbp-grid .bbp-card { max-width: none; }
+.bbp-admin .bbp-card h3 { margin-top: 0; }
+.bbp-admin .bbp-card-status { min-height: 1.4em; margin: 6px 0 0; color: #50575e; }
+.bbp-admin .bbp-ok { color: #1a7f37; font-weight: 600; }
+.bbp-admin .bbp-bad { color: #b32d2e; font-weight: 600; }
+.bbp-admin .bbp-inline { margin: 4px 0 0; }
+.bbp-admin .bbp-raw { max-height: 420px; overflow: auto; background: #f6f7f7; padding: 12px; border: 1px solid #dcdcde; font-size: 12px; white-space: pre-wrap; word-break: break-word; }

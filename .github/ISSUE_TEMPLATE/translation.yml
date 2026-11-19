@@ -1,0 +1,20 @@
+name: Translation or language review
+description: Improve an interface translation or add a new language
+labels: [translation]
+body:
+  - type: input
+    id: lang
+    attributes:
+      label: Language and code (for example Tamil, ta)
+    validations: {required: true}
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What are you offering?
+      options: [Review of an existing draft, Corrections, New language]
+    validations: {required: true}
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Please say whether you are a native speaker. Reviewed languages lose their "draft" status.
